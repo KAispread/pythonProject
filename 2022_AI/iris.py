@@ -2,7 +2,6 @@ import numpy as np
 
 data = np.loadtxt("./iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 
-
 def Distance(a, b) :   # 두 점사이의 거리를 구하는 함수
     d = (a[0] - b[0])*(a[0] - b[0]) + (a[1] - b[1])*(a[1] - b[1])
     # 정확한 거리 측정을 위해 루트를 씌워야하지만 단순 거리비교만 하기 위해 생략
