@@ -36,9 +36,10 @@ for epoch in range(10):
         if num[i] !=0 :
             mean[i][0] = sum[i][0] / num[i]
             mean[i][1] = sum[i][1] / num[i]
-    for i in range(3):
-        sum[i][0] = sum[i][1] = num[i] = 0
 
     print("Mean :: ", mean)
     print("Sum  :: ", sum)
     print("Num  :: ", num)
+
+    for i in range(3):
+        sum[i][0] = sum[i][1] = num[i] = 0
