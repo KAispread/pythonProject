@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.loadtxt("iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
+data = np.loadtxt("./iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 
 # 데이터의 4가지 속성을 통해 데이터를 군집화한다.
 # 속성이 n개 라면, n차원 공간상에서의 두 점사이의 거리를 측정(데이터간 유사도를 측정).
@@ -11,25 +11,52 @@ data = np.loadtxt("iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 3. 그룹의 평균으로 대표 패턴 변경.
 4. 2~4번을 반복
 """
-average_data = np.array([   # 임의의 대표 패턴 생성.
-    [2.7, 1.1],
-    [1.7, 2.7],
-    [4.2, 3.5]
-])
 
-sum = np.zeros((3, 2))      # 대표 패턴을 구하기 위한 데이터의 합 저장 버퍼
-num = np.zeros(3)           # count buffer
-
-for epoch in range(5):      # 반복 횟수를 5로 설정
-    # Step 2 : Grouping
-    for i in range(0, 150):
-        minDistClass = MinDistance(average_data, data[i])  # 대표값과 최소거리를 측정하여 해당 그룹의 인덱스를 반환
-        sum[minDistClass] += minDistClass
-        num[minDistClass] += 1
-
-    # Step 3 : Adjust
-    average_data[0] = sum[0] / num[0]
-    average_data[1] = sum[1] / num[1]
-    average_data[2] = sum[2] / num[2]
+def Distance(a, b):  # 두 점사이의 거리를 구하는 함수
+    d = (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]) + (a[3] - b[3]) * (a[3] - b[3])
+    # 정확한 거리 측정을 위해 루트를 씌워야하지만 단순 거리비교만 하기 위해 생략
+    return d
 
 
+mean = np.array([[4.9, 3.1, 1.5, 0.1], [5.7, 2.9, 4.2, 1.3], [6.7, 3.1, 5.6, 2.4]])  # 임의의 표준 데이터 설정
+p = np.zeros(4)
+d = np.zeros(3)
+
+sum = np.zeros((3, 4))
+num = np.zeros(3)
+
+for epoch in range(10):
+    # Step 2: Grouping
+    for i in range(150):
+        p[0] = data[i][0]  # x
+        p[1] = data[i][1]  # y
+        p[2] = data[i][2]  # z
+        p[3] = data[i][3]  # w
+        d[0] = Distance(mean[0], p)
+        d[1] = Distance(mean[1], p)
+        d[2] = Distance(mean[2], p)
+        minIdx = np.argmin(d)  # 제일 작은 값의 Index 반환
+        sum[minIdx][0] += p[0]  # 데이터가 포함되는 그룹의 x 좌표에 값을 더함
+        sum[minIdx][1] += p[1]  # 데이터가 포함되는 그룹의 y 좌표에 값을 더함
+        sum[minIdx][2] += p[2]  # 데이터가 포함되는 그룹의 z 좌표에 값을 더함
+        sum[minIdx][3] += p[3]  # 데이터가 포함되는 그룹의 w 좌표에 값을 더함
+        num[minIdx] += 1
+
+    # Step 3: Adjust
+    print("Sum && Num :: ", sum, num)
+
+    for i in range(3):
+        if num[i] != 0:
+            mean[i][0] = sum[i][0] / num[i]
+            mean[i][1] = sum[i][1] / num[i]
+            mean[i][2] = sum[i][2] / num[i]
+            mean[i][3] = sum[i][3] / num[i]
+
+    print("대표 패턴 :: ", mean)
+    print("Num  :: ", num, "\n")
+
+    for i in range(3):
+        for a in range(4):
+            sum[i][a] = 0
+
+        num[i] = 0
