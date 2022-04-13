@@ -10,9 +10,11 @@ t = np.array([0.0, 0.0, 0.0, 1.0])
 # t = np.array([0.0, 1.0, 1.0, 1.0])
 # 각 패턴에 대한 Target 지정 (OR gate)
 
-lrate = 0.1     # learning Rate 값 지정 / 값이 작을 수록 학습이 느리게 됨.
+lrate = 0.1
+# learning Rate 값 지정 / 값이 작을 수록 학습이 느리게 됨.
 
-w = np.zeros(3) # w1 ~ 3까지의 값이 들어갈 버퍼
+w = np.zeros(3)
+# w1 ~ 3까지의 값이 들어갈 버퍼
 
 w[0] = 0.5
 w[1] = 0.2
@@ -20,7 +22,7 @@ w[2] = 0.7
 
 
 def act_tlu(out):
-    if (out > 0.0) :
+    if out > 0.0:
         return 1.0
     return 0.0
 
