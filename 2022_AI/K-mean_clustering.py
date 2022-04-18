@@ -1,3 +1,5 @@
+# 2017E7024 이기우
+
 import numpy as np
 
 data = np.loadtxt("./iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
