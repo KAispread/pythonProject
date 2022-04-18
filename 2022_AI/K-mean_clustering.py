@@ -14,10 +14,12 @@ data = np.loadtxt("./iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 4. 2~4번을 반복
 """
 
-def Distance(a, b):  # 두 점사이의 거리를 구하는 함수
-    d = (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]) + (a[3] - b[3]) * (a[3] - b[3])
-    # 정확한 거리 측정을 위해 루트를 씌워야하지만 단순 거리비교만 하기 위해 생략
-    return d
+
+def distance(a, b):  # 두 점사이의 거리를 구하는 함수
+    dist = (a[0] - b[0]) * (a[0] - b[0]) + (a[1] - b[1]) * (a[1] - b[1]) + (a[2] - b[2]) * (a[2] - b[2]) \
+        + (a[3] - b[3]) * (a[3] - b[3])
+    # 정확한 거리 측정을 위해 루트를 씌워야 하지만 단순 거리비교만 하기 위해 생략
+    return dist
 
 
 mean = np.array([[4.9, 3.1, 1.5, 0.1], [5.7, 2.9, 4.2, 1.3], [6.7, 3.1, 5.6, 2.4]])  # 임의의 표준 데이터 설정
@@ -34,9 +36,9 @@ for epoch in range(10):
         p[1] = data[i][1]  # y
         p[2] = data[i][2]  # z
         p[3] = data[i][3]  # w
-        d[0] = Distance(mean[0], p)
-        d[1] = Distance(mean[1], p)
-        d[2] = Distance(mean[2], p)
+        d[0] = distance(mean[0], p)
+        d[1] = distance(mean[1], p)
+        d[2] = distance(mean[2], p)
         minIdx = np.argmin(d)  # 제일 작은 값의 Index 반환
         sum[minIdx][0] += p[0]  # 데이터가 포함되는 그룹의 x 좌표에 값을 더함
         sum[minIdx][1] += p[1]  # 데이터가 포함되는 그룹의 y 좌표에 값을 더함
