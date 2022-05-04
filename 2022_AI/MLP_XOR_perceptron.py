@@ -23,10 +23,10 @@ x = np.array([[1.0, 0.1, 0.1],
 t = np.array([0.0, 1.0, 1.0, 0.0])
 
 
-w1 = np.zeros([H1DIM], [INDIM])
+w1 = np.zeros([H1DIM, INDIM])
 for i in range(H1DIM):
     for j in range(INDIM):
-        w1[i] = np.random.rand()
+        w1[i][j] = np.random.rand()
 
 w2 = np.zeros(H1DIM)
 for i in range(H1DIM):
@@ -37,12 +37,12 @@ print(w1)
 print(w2)
 
 
-y1 = np.zeros(H1DIM)
+y1 = np.zeros(H1DIM)            # OUTPUT
 y2 = 0.0
 
 
-d1 = np.zeros(H1DIM)
-d2 =0.0
+d1 = np.zeros(H1DIM)            # ERROR
+d2 = 0.0
 
 
 for epoch in range(1000):
