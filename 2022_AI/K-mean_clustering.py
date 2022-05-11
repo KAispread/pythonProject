@@ -23,11 +23,11 @@ def distance(a, b):  # 두 점사이의 거리를 구하는 함수
 
 
 mean = np.array([[4.9, 3.1, 1.5, 0.1], [5.7, 2.9, 4.2, 1.3], [6.7, 3.1, 5.6, 2.4]])  # 임의의 표준 데이터 설정
-p = np.zeros(4)
-d = np.zeros(3)
+p = np.zeros(4)     # 각 데이터의 속성값을 저장할 배열 속성값이 4개라 배열의 크기도 4.
+d = np.zeros(3)     # 대표 벡터와 데이터 값의 거리를 저장, K = 3 이라 배열의 크기도 3.
 
-sum = np.zeros((3, 4))
-num = np.zeros(3)
+sum = np.zeros((3, 4))              # 클래스[i]의 속성값을 더함
+num = np.zeros(3)                   # 클래스[i]에 데이터가 몇개들어갔는지 저장
 
 for epoch in range(10):
     # Step 2: Grouping
@@ -44,7 +44,7 @@ for epoch in range(10):
         sum[minIdx][1] += p[1]  # 데이터가 포함되는 그룹의 y 좌표에 값을 더함
         sum[minIdx][2] += p[2]  # 데이터가 포함되는 그룹의 z 좌표에 값을 더함
         sum[minIdx][3] += p[3]  # 데이터가 포함되는 그룹의 w 좌표에 값을 더함
-        num[minIdx] += 1
+        num[minIdx] += 1        # 클래스에 데이터가 몇개 들어갔는지 저장.
 
     # Step 3: Adjust
 
@@ -59,8 +59,7 @@ for epoch in range(10):
     print("대표 패턴 :: \n ", mean)
     print("Num  :: ", num, "\n")
 
-    for i in range(3):
+    for i in range(3):          # 한 사이클이 끝날때마다 sum과 num 배열을 초기화
         for a in range(4):
             sum[i][a] = 0
-
         num[i] = 0
