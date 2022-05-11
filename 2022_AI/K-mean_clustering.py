@@ -47,7 +47,6 @@ for epoch in range(10):
         num[minIdx] += 1
 
     # Step 3: Adjust
-    print("Sum && Num :: ", sum, num)
 
     for i in range(3):
         if num[i] != 0:
@@ -56,7 +55,8 @@ for epoch in range(10):
             mean[i][2] = sum[i][2] / num[i]
             mean[i][3] = sum[i][3] / num[i]
 
-    print("대표 패턴 :: ", mean)
+    print(epoch)
+    print("대표 패턴 :: \n ", mean)
     print("Num  :: ", num, "\n")
 
     for i in range(3):
