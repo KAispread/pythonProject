@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.loadtxt("../iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
+data = np.loadtxt("../K-mean-clustering/iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 
 sum_data = np.zeros((3, 4))
 avg_data = np.zeros((3, 4))

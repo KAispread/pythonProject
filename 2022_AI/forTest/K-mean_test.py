@@ -1,6 +1,6 @@
 import numpy as np
 
-irisData = np.loadtxt("../iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
+irisData = np.loadtxt("../K-mean-clustering/iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 
 
 def get_distance(a, b):

@@ -2,7 +2,7 @@
 
 import numpy as np
 
-data = np.loadtxt("./iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
+data = np.loadtxt("iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 
 # 데이터의 4가지 속성을 통해 데이터를 군집화한다.
 # 속성이 n개 라면, n차원 공간상에서의 두 점사이의 거리를 측정(데이터간 유사도를 측정).

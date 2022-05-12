@@ -1,7 +1,7 @@
 # 2017E7024 이기우
 
 import numpy as np
-data = np.loadtxt("iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
+data = np.loadtxt("../K-mean-clustering/iris.csv", delimiter=",", dtype=np.float32, skiprows=1)
 column = 4
 row = 150
 
