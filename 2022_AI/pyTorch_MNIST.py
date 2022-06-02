@@ -1,3 +1,11 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torch import tensor
+from torchvision import datasets  # torchvision --> 영상을 처리하기 좋게 변환하는 것을 모아놓은 라이브러리 // datasets이라는 곳에 MNIST가 있음
+from torchvision.transforms import ToTensor  # torchvision.transforms --> 영상의 위치, 회전
+
 # -*- coding: utf-8 -*-
 """torchMNIST_modelNN_GPU.ipynb
 
@@ -20,15 +28,6 @@ Original file is located at
 """
 MNIST란 테스트 이미지를 28x28픽셀로 변환된 데이터의 집합이다. 
 """
-
-
-import torch
-from torch import tensor
-from torchvision import datasets   # torchvision --> 영상을 처리하기 좋게 변환하는 것을 모아놓은 라이브러리 // datasets이라는 곳에 MNIST가 있음
-from torchvision.transforms import ToTensor # torchvision.transforms --> 영상의 위치, 회전
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
 
 training_data = datasets.MNIST("data", train=True, download=True, transform=ToTensor())   # MNIST 데이터 (train data)를 불러옴, tensor 자료형으로 변환해서 저장
 test_data = datasets.MNIST("data", train=False, download=True, transform=ToTensor())    #  test data를 불러옴
