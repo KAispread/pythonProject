@@ -64,11 +64,11 @@ class network(nn.Module):  # 네트워크 모델 정의
         return x3
 
 if torch.cuda.is_available():
-    device = torch.device("cuda:0")
-    print("running on the GPU")
+    device = torch.device("cuda")
+    print("GPU is using")
 else:
     device = torch.device("cpu")
-    print("running on the CPU")
+    print("CPU is using")
 
 model = network(784, 300, 100, 10)  # .to(device)
 model.to(device)
@@ -86,7 +86,6 @@ def train():
         loss_sum = 0
         for data, target in trainLoader:
             X, y = data.to(device), yt[target].to(device)
-            #model.zero_grad()
             optimizer.zero_grad()
 
             prediction = model(X)  # 1. forward

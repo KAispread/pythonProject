@@ -3,8 +3,6 @@
 # 3 patterns / 1 class
 # 2 Layer
 
-import numpy as np
-import math as m
 
 import torch
 
@@ -155,10 +153,10 @@ def test():
             X = x[p]
             Y = yt[p]
             outputs = model(X)  # 출력 계산
-            print("Target:", Y, "Output:", outputs)
+            print("Target:", Y, " / Output:", outputs)
 
 
 train()
-print("End Train !!!")
+print("Finished the train")
 test()
-
+print("Finished the test")
